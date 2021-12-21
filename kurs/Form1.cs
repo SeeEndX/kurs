@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace kurs
+namespace kurs //сделать 6
 {
     public partial class Form1 : Form
     {
@@ -17,6 +17,7 @@ namespace kurs
 
         GravityPoint point1;
         GravityPoint point2;
+        CounterPoint pointC;
 
         public Form1()
         {
@@ -37,21 +38,29 @@ namespace kurs
             };
 
             emitters.Add(this.emitter);
+            /*
+                        point1 = new GravityPoint
+                        {
+                            X = picDisplay.Width /2 + 100,
+                            Y = picDisplay.Height / 2
+                        };
 
-            point1 = new GravityPoint
+                        point2 = new GravityPoint
+                        {
+                            X = picDisplay.Width / 2 - 100,
+                            Y = picDisplay.Height / 2
+                        };
+            */
+
+            pointC = new CounterPoint
             {
-                X = picDisplay.Width /2 + 100,
+                X = picDisplay.Width / 2 + 100,
                 Y = picDisplay.Height / 2
             };
 
-            point2 = new GravityPoint
-            {
-                X = picDisplay.Width / 2 - 100,
-                Y = picDisplay.Height / 2
-            };
-
+            emitter.impactPoints.Add(pointC);
             //emitter.impactPoints.Add(point1);
-            emitter.impactPoints.Add(point2);
+            //emitter.impactPoints.Add(point2);
 
             /*
             emitter = new TopEmitter
@@ -101,8 +110,8 @@ namespace kurs
                 emitter.MousePositionX = e.X;
                 emitter.MousePositionY = e.Y;
             }
-            point2.X = e.X;
-            point2.Y = e.Y;
+            pointC.X = e.X;
+            pointC.Y = e.Y;
         }
 
         private void tbDirection_Scroll(object sender, EventArgs e)
@@ -113,12 +122,23 @@ namespace kurs
 
         private void tbGraviton_Scroll(object sender, EventArgs e)
         {
-            point1.Power = tbGraviton1.Value;
+            //point1.Power = tbGraviton1.Value;
         }
 
-        private void tbGraviton2_Scroll(object sender, EventArgs e)
+        //6 задание точка убийца)
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            point2.Power = tbGraviton2.Value;
+            //CounterPoint p;
+            pointC = new CounterPoint
+            {
+                X = e.X,
+                Y = e.Y,
+            };
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            emitter.impactPoints.Add(pointC);
         }
     }
 }
