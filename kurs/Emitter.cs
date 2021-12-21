@@ -15,7 +15,7 @@ namespace kurs
         public int MousePositionX;
         public int MousePositionY;
         public float GravitationX = 0;
-        public float GravitationY = 0;
+        public float GravitationY = 1;
         public int ParticlesCount = 500;
 
         public int X; 
@@ -49,11 +49,13 @@ namespace kurs
 
             foreach (var particle in particles)
             {
-                particle.Life -= 1; // уменьшаю здоровье
-                                    // если здоровье кончилось
-                if (particle.Life < 0)
+                if (particle.Life <= 0)
                 {
-                    ResetParticle(particle);
+                    if (particlesToCreate > 0)
+                    {
+                        particlesToCreate -= 1;
+                        ResetParticle(particle);
+                    }
                 }
                 else
                 {
@@ -69,26 +71,33 @@ namespace kurs
                 }
             }
 
-            for (var i = 0; i < 10; ++i)
+            /*   for (var i = 0; i < 10; ++i)
+               {
+                   if (particles.Count < ParticlesCount) // пока частиц меньше 500 генерируем новые
+                   {
+                       var particle = new ParticleColorful();
+                       particle.FromColor = Color.Red;
+                       particle.ToColor = Color.FromArgb(0, Color.Magenta);
+                       particle.X = MousePositionX;
+                       particle.Y = MousePositionY;
+
+                       var particle = CreateParticle();
+
+                       ResetParticle(particle);
+
+                       particles.Add(particle);
+                   }
+                   else
+                   {
+                       break;
+                   }
+            }*/
+            while (particlesToCreate >= 1)
             {
-                if (particles.Count < ParticlesCount) // пока частиц меньше 500 генерируем новые
-                {
-                    /*var particle = new ParticleColorful();
-                    particle.FromColor = Color.Red;
-                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
-                    */
-                    var particle = CreateParticle();
-
-                    ResetParticle(particle);
-
-                    particles.Add(particle);
-                }
-                else
-                {
-                    break;
-                }
+                particlesToCreate -= 1;
+                var particle = CreateParticle();
+                ResetParticle(particle);
+                particles.Add(particle);
             }
         }
 
@@ -111,7 +120,9 @@ namespace kurs
             particle.X = X;
             particle.Y = Y;
 
-            var direction = Direction+(double)Particle.rand.Next(Spreading)-Spreading/2;
+            var direction =Direction
+                + (double)Particle.rand.Next(Spreading)
+                - Spreading / 2;
             var speed = Particle.rand.Next(SpeedMin,SpeedMax);
 
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
@@ -144,7 +155,7 @@ namespace kurs
 
         public abstract void ImpactParticle(Particle particle);
 
-        public void Render(Graphics g)
+        public virtual void Render(Graphics g)
         {
             g.FillEllipse(
                     new SolidBrush(Color.LimeGreen),
@@ -168,6 +179,17 @@ namespace kurs
 
             particle.SpeedX += gX * Power / r2;
             particle.SpeedY += gY * Power / r2;
+        }
+
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(
+                   new Pen(Color.Red),
+                   X - Power / 2,
+                   Y - Power / 2,
+                   Power,
+                   Power
+               );
         }
     }
 
