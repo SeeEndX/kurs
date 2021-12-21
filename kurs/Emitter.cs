@@ -10,8 +10,11 @@ namespace kurs
     class Emitter
     {
         List<Particle> particles = new List<Particle>();
+        public List<Point> gravityPoints = new List<Point>(); 
         public int MousePositionX;
         public int MousePositionY;
+        public float GravitationX = 0;
+        public float GravitationY = 0;
 
         public void UpdateState()
         {
@@ -33,6 +36,20 @@ namespace kurs
                 }
                 else
                 {
+                    foreach (var point in gravityPoints)
+                    {
+                        float gX = point.X - particle.X;
+                        float gY = point.Y - particle.Y;
+
+                        float r2 = gX * gX + gY * gY;
+                        float M = 100;
+
+                        particle.SpeedX += (gX) * M / r2;
+                        particle.SpeedY += (gY) * M / r2;
+                    }
+
+                    particle.SpeedX += GravitationX;
+                    particle.SpeedY += GravitationY;
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
                 }
@@ -61,6 +78,11 @@ namespace kurs
             foreach (var particle in particles)
             {
                 particle.Draw(g);
+            }
+
+            foreach (var point in gravityPoints)
+            {
+                g.FillEllipse(new SolidBrush(Color.Green), point.X - 5, point.Y - 5, 10, 10);
             }
         }
     }
