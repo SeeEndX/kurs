@@ -62,6 +62,8 @@ namespace kurs
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
 
+                    particle.Life -= 1;
+
                     foreach (var point in impactPoints)
                     {
                         point.ImpactParticle(particle);
@@ -192,9 +194,19 @@ namespace kurs
                    new Pen(Color.Red),
                    X - Power / 2,
                    Y - Power / 2,
-                   Power,
-                   Power
+                   Power,Power
                );
+
+            var stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center;
+
+            g.DrawString(
+                $"Сила {Power}",
+                new Font("Verdana", 10),
+                new SolidBrush(Color.White),
+                X,Y,stringFormat
+                );
         }
     }
 

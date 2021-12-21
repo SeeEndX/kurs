@@ -50,7 +50,7 @@ namespace kurs
                 Y = picDisplay.Height / 2
             };
 
-            emitter.impactPoints.Add(point1);
+            //emitter.impactPoints.Add(point1);
             emitter.impactPoints.Add(point2);
 
             /*
