@@ -59,6 +59,9 @@ namespace kurs
                 }
                 else
                 {
+                    particle.X += particle.SpeedX;
+                    particle.Y += particle.SpeedY;
+
                     foreach (var point in impactPoints)
                     {
                         point.ImpactParticle(particle);
@@ -66,8 +69,6 @@ namespace kurs
 
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
-                    particle.X += particle.SpeedX;
-                    particle.Y += particle.SpeedY;
                 }
             }
 
