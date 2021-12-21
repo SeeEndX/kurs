@@ -12,9 +12,8 @@ namespace kurs
         public int Radius;
         public float X;
         public float Y;
-
-        public float Direction;
-        public float Speed;
+        public float SpeedX;
+        public float SpeedY;
 
         public float Life; // запас здоровья частицы
 
@@ -22,8 +21,11 @@ namespace kurs
 
         public Particle()
         {
-            Direction = rand.Next(360);
-            Speed = rand.Next(10);
+            var direction = (double)rand.Next(360);
+            var speed = 1 + rand.Next(10);
+            //вектор скорости
+            SpeedX = (float)(Math.Cos(direction/180*Math.PI) * speed);
+            SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
             Radius = 2 + rand.Next(10);
             Life = 20 + rand.Next(100);
         }
@@ -31,19 +33,13 @@ namespace kurs
 
         public virtual void Draw(Graphics g)
         {
-            // рассчитываем коэффициент прозрачности по шкале от 0 до 1.0
+            //коэффициент прозрачности от 0 до 1.0
             float k = Math.Min(1f, Life / 100);
-            // рассчитываем значение альфа канала в шкале от 0 до 255
-            // по аналогии с RGB, он используется для задания прозрачности
+            //значение альфа канала от 0 до 255
             int alpha = (int)(k * 255);
-
             var color = Color.FromArgb(alpha, Color.Black);
             var b = new SolidBrush(color);
-
-            // нарисовали залитый кружок радиусом Radius с центром в X, Y
             g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
-            
-            // удалили кисть из памяти
             b.Dispose();
         }
     }
@@ -53,7 +49,6 @@ namespace kurs
         // два новых поля под цвет начальный и конечный
         public Color FromColor;
         public Color ToColor;
-
         // для смеси цветов
         public static Color MixColor(Color color1, Color color2, float k)
         {
