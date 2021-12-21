@@ -19,6 +19,10 @@ namespace kurs
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
             emitter.gravityPoints.Add(new Point(picDisplay.Width / 2, picDisplay.Height / 2));
+
+            emitter.gravityPoints.Add(new Point((int)(picDisplay.Width * 0.75), picDisplay.Height / 2));
+
+            emitter.gravityPoints.Add(new Point((int)(picDisplay.Width / 4), picDisplay.Height / 2));
         }
 
         private void timer1_Tick(object sender, EventArgs e)

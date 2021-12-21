@@ -41,7 +41,7 @@ namespace kurs
                         float gX = point.X - particle.X;
                         float gY = point.Y - particle.Y;
 
-                        float r2 = gX * gX + gY * gY;
+                        float r2 = (float)Math.Max(100,gX * gX + gY * gY);
                         float M = 100;
 
                         particle.SpeedX += (gX) * M / r2;
@@ -82,8 +82,28 @@ namespace kurs
 
             foreach (var point in gravityPoints)
             {
-                g.FillEllipse(new SolidBrush(Color.Green), point.X - 5, point.Y - 5, 10, 10);
+                g.FillEllipse(new SolidBrush(Color.LimeGreen), point.X - 5, point.Y - 5, 10, 10);
             }
+        }
+    }
+
+    public abstract class IImpactPoint
+    {
+        public float X;
+        public float Y;
+
+        // абстрактный метод с помощью которого будем изменять состояние частиц
+        public abstract void ImpactParticle(Particle particle);
+
+        public void Render(Graphics g)
+        {
+            g.FillEllipse(
+                    new SolidBrush(Color.Red),
+                    X - 5,
+                    Y - 5,
+                    10,
+                    10
+                );
         }
     }
 }
