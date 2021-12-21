@@ -205,6 +205,34 @@ namespace kurs
         }
     }
 
+    //для 4
+    public class TeleportPoint : IImpactPoint
+    {
+        public int Power = 100;
+        public override void ImpactParticle(Particle particle)
+        {
+            float gX = X - particle.X;
+            float gY = Y - particle.Y;
+
+            double r = Math.Sqrt(gX * gX + gY * gY);
+            if (r + particle.Radius < Power / 2)
+            {
+                float r2 = (float)Math.Max(100, gX * gX + gY * gY);
+                particle.X = X;
+                particle.Y = Y;
+            }
+        }
+
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(
+                   new Pen(Color.OrangeRed),
+                   X - Power / 2,
+                   Y - Power / 2,
+                   Power, Power
+               );
+        }
+    }
     //для 6
     public class CounterPoint : IImpactPoint
     {

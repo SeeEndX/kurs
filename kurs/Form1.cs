@@ -15,14 +15,13 @@ namespace kurs //сделать 6
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
 
-        GravityPoint point1;
-        GravityPoint point2;
         CounterPoint pointC;
 
         public Form1()
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
+
 
             this.emitter = new Emitter
             {
@@ -46,34 +45,6 @@ namespace kurs //сделать 6
             };
 
             emitter.impactPoints.Add(pointC);
-            //emitter.impactPoints.Add(point1);
-            //emitter.impactPoints.Add(point2);
-
-            /*
-            emitter = new TopEmitter
-            {
-                Width = picDisplay.Width,
-                GravitationY = 0.25f
-            };
-
-            emitter.impactPoints.Add(new GravityPoint
-            {
-                X = (float)(picDisplay.Width * 0.25),
-                Y = picDisplay.Height / 2
-            });
-
-            emitter.impactPoints.Add(new GravityPoint
-            {
-                X = (float)(picDisplay.Width * 0.75),
-                Y = picDisplay.Height / 2
-            });
-
-            emitter.impactPoints.Add(new AntiGravityPoint
-            {
-                X = picDisplay.Width / 2,
-                Y = picDisplay.Height / 2
-            });
-            */
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -97,7 +68,9 @@ namespace kurs //сделать 6
                 emitter.MousePositionX = e.X;
                 emitter.MousePositionY = e.Y;
             }
-            pointC.X = e.X;
+            //emitter.X = e.X; //следование за мышью
+            //emitter.Y = e.Y;
+            pointC.X = e.X;    
             pointC.Y = e.Y;
         }
 
@@ -107,15 +80,9 @@ namespace kurs //сделать 6
             lblDirection.Text = $"{tbDirection.Value}°";
         }
 
-        private void tbGraviton_Scroll(object sender, EventArgs e)
-        {
-            //point1.Power = tbGraviton1.Value;
-        }
-
-        //6 задание точка убийца)
+        //6 задание счетчик
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            //CounterPoint p;
             pointC = new CounterPoint
             {
                 X = e.X,
@@ -128,9 +95,5 @@ namespace kurs //сделать 6
             emitter.impactPoints.Add(pointC);
         }
 
-        private void btnControlP_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
