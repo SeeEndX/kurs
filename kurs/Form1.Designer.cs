@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblDirection = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnControlP = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +58,7 @@
             // 
             // tbDirection
             // 
-            this.tbDirection.Location = new System.Drawing.Point(105, 399);
+            this.tbDirection.Location = new System.Drawing.Point(114, 396);
             this.tbDirection.Maximum = 359;
             this.tbDirection.Name = "tbDirection";
             this.tbDirection.Size = new System.Drawing.Size(185, 45);
@@ -67,17 +68,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(1, 399);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 392);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 32);
+            this.label1.Size = new System.Drawing.Size(106, 76);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Направление\r\n\r\n";
+            this.label1.Text = "Направление\r\nчастиц\r\n\r\n\r\n";
             // 
             // lblDirection
             // 
             this.lblDirection.AutoSize = true;
-            this.lblDirection.Location = new System.Drawing.Point(296, 401);
+            this.lblDirection.Location = new System.Drawing.Point(296, 396);
             this.lblDirection.Name = "lblDirection";
             this.lblDirection.Size = new System.Drawing.Size(17, 13);
             this.lblDirection.TabIndex = 3;
@@ -85,19 +86,32 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(348, 401);
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(338, 392);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(161, 39);
             this.button1.TabIndex = 7;
-            this.button1.Text = "button1";
+            this.button1.Text = "Добавить счетчик";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnControlP
+            // 
+            this.btnControlP.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnControlP.Location = new System.Drawing.Point(505, 392);
+            this.btnControlP.Name = "btnControlP";
+            this.btnControlP.Size = new System.Drawing.Size(180, 39);
+            this.btnControlP.TabIndex = 8;
+            this.btnControlP.Text = "Управлять частицами";
+            this.btnControlP.UseVisualStyleBackColor = true;
+            this.btnControlP.Click += new System.EventHandler(this.btnControlP_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnControlP);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblDirection);
             this.Controls.Add(this.label1);
@@ -120,6 +134,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDirection;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnControlP;
     }
 }
 

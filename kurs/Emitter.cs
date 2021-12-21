@@ -73,28 +73,6 @@ namespace kurs
                     particle.SpeedY += GravitationY;
                 }
             }
-
-            /*   for (var i = 0; i < 10; ++i)
-               {
-                   if (particles.Count < ParticlesCount) // пока частиц меньше 500 генерируем новые
-                   {
-                       var particle = new ParticleColorful();
-                       particle.FromColor = Color.Red;
-                       particle.ToColor = Color.FromArgb(0, Color.Magenta);
-                       particle.X = MousePositionX;
-                       particle.Y = MousePositionY;
-
-                       var particle = CreateParticle();
-
-                       ResetParticle(particle);
-
-                       particles.Add(particle);
-                   }
-                   else
-                   {
-                       break;
-                   }
-            }*/
             while (particlesToCreate >= 1)
             {
                 particlesToCreate -= 1;
@@ -104,6 +82,7 @@ namespace kurs
             }
         }
 
+  
         public void Render(Graphics g)
         {
             foreach (var particle in particles)
@@ -120,6 +99,7 @@ namespace kurs
         public virtual void ResetParticle(Particle particle)
         {
             particle.Life = Particle.rand.Next(LifeMin,LifeMax);
+            
             particle.X = X;
             particle.Y = Y;
 
@@ -225,6 +205,7 @@ namespace kurs
         }
     }
 
+    //для 6
     public class CounterPoint : IImpactPoint
     {
         public int Power = 100;

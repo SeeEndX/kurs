@@ -38,19 +38,6 @@ namespace kurs //сделать 6
             };
 
             emitters.Add(this.emitter);
-            /*
-                        point1 = new GravityPoint
-                        {
-                            X = picDisplay.Width /2 + 100,
-                            Y = picDisplay.Height / 2
-                        };
-
-                        point2 = new GravityPoint
-                        {
-                            X = picDisplay.Width / 2 - 100,
-                            Y = picDisplay.Height / 2
-                        };
-            */
 
             pointC = new CounterPoint
             {
@@ -139,6 +126,11 @@ namespace kurs //сделать 6
         private void button1_Click(object sender, EventArgs e)
         {
             emitter.impactPoints.Add(pointC);
+        }
+
+        private void btnControlP_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
