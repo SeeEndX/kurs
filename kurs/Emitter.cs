@@ -43,6 +43,7 @@ namespace kurs
             return particle;
         }
 
+
         public void UpdateState()
         {
             int particlesToCreate = ParticlesPerTick;
@@ -121,13 +122,18 @@ namespace kurs
 
         public override void ResetParticle(Particle particle)
         {
-            base.ResetParticle(particle);
+            particle.X = Particle.rand.Next(Width); // позиция X -- произвольная точка от 0 до Width
+            particle.Y = 0;  // ноль -- это верх экрана 
 
-            particle.X = Particle.rand.Next(Width); 
-            particle.Y = 0;
+            particle.SpeedY = 1; // падаем вниз по умолчанию
+            particle.SpeedX = Particle.rand.Next(-2, 2); // разброс влево и вправа у частиц 
+            //base.ResetParticle(particle);
 
-            particle.SpeedY = 1;
-            particle.SpeedX = Particle.rand.Next(-2, 2);
+            //particle.X = Particle.rand.Next(Width); 
+            //particle.Y = 0;
+
+            //particle.SpeedY = 1;
+            //particle.SpeedX = Particle.rand.Next(-2, 2);
         }
     }
 
@@ -135,6 +141,8 @@ namespace kurs
     {
         public float X;
         public float Y;
+        public static float XForTP;
+        public static float YForTP;
 
         public abstract void ImpactParticle(Particle particle);
 
@@ -217,16 +225,49 @@ namespace kurs
             double r = Math.Sqrt(gX * gX + gY * gY);
             if (r + particle.Radius < Power / 2)
             {
-                float r2 = (float)Math.Max(100, gX * gX + gY * gY);
-                particle.X = X;
-                particle.Y = Y;
+                if(YForTP != 0)
+                {
+                    particle.X = XForTP;
+                    particle.Y = YForTP;
+                }
             }
         }
 
         public override void Render(Graphics g)
         {
             g.DrawEllipse(
-                   new Pen(Color.OrangeRed),
+                   new Pen(Color.Lime),
+                   X - Power / 2,
+                   Y - Power / 2,
+                   Power, Power
+               );
+        }
+    }
+
+    public class TeleportPointOut : IImpactPoint
+    {
+        public int Power = 100;
+        
+        public override void ImpactParticle(Particle particle)
+        {/*
+            float gX = X - particle.X;
+            float gY = Y - particle.Y;
+
+            double r = Math.Sqrt(gX * gX + gY * gY);
+            if (r + particle.Radius < Power / 2)
+            {
+                // float r2 = (float)Math.Max(100, gX * gX + gY * gY);
+                YForTP = Y;
+                XForTP = X;
+            }*/
+        }
+
+        public override void Render(Graphics g)
+        {
+            YForTP = Y;
+            XForTP = X;
+            g.DrawEllipse(
+                   new Pen(Color.Blue),
                    X - Power / 2,
                    Y - Power / 2,
                    Power, Power
