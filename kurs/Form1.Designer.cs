@@ -48,6 +48,7 @@
             this.lblGY = new System.Windows.Forms.Label();
             this.lblGX = new System.Windows.Forms.Label();
             this.btnTP = new System.Windows.Forms.Button();
+            this.lblInfoForTp = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPartsInTick)).BeginInit();
@@ -97,7 +98,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(815, 493);
+            this.button1.Location = new System.Drawing.Point(815, 476);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(239, 48);
@@ -163,7 +164,7 @@
             this.tbSpr.Name = "tbSpr";
             this.tbSpr.Size = new System.Drawing.Size(216, 56);
             this.tbSpr.TabIndex = 12;
-            this.tbSpr.Value = 10;
+            this.tbSpr.Value = 300;
             this.tbSpr.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // lblSpr
@@ -172,9 +173,9 @@
             this.lblSpr.Location = new System.Drawing.Point(1023, 194);
             this.lblSpr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSpr.Name = "lblSpr";
-            this.lblSpr.Size = new System.Drawing.Size(24, 17);
+            this.lblSpr.Size = new System.Drawing.Size(32, 17);
             this.lblSpr.TabIndex = 14;
-            this.lblSpr.Text = "10";
+            this.lblSpr.Text = "300";
             // 
             // label5
             // 
@@ -249,11 +250,21 @@
             this.btnTP.UseVisualStyleBackColor = true;
             this.btnTP.Click += new System.EventHandler(this.btnTP_Click);
             // 
+            // lblInfoForTp
+            // 
+            this.lblInfoForTp.AutoSize = true;
+            this.lblInfoForTp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblInfoForTp.Location = new System.Drawing.Point(813, 408);
+            this.lblInfoForTp.Name = "lblInfoForTp";
+            this.lblInfoForTp.Size = new System.Drawing.Size(0, 18);
+            this.lblInfoForTp.TabIndex = 22;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.lblInfoForTp);
             this.Controls.Add(this.btnTP);
             this.Controls.Add(this.lblGX);
             this.Controls.Add(this.lblGY);
@@ -307,6 +318,7 @@
         private System.Windows.Forms.Label lblGY;
         private System.Windows.Forms.Label lblGX;
         private System.Windows.Forms.Button btnTP;
+        private System.Windows.Forms.Label lblInfoForTp;
     }
 }
 

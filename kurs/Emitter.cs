@@ -127,13 +127,6 @@ namespace kurs
 
             particle.SpeedY = 1; // падаем вниз по умолчанию
             particle.SpeedX = Particle.rand.Next(-2, 2); // разброс влево и вправа у частиц 
-            //base.ResetParticle(particle);
-
-            //particle.X = Particle.rand.Next(Width); 
-            //particle.Y = 0;
-
-            //particle.SpeedY = 1;
-            //particle.SpeedX = Particle.rand.Next(-2, 2);
         }
     }
 
@@ -249,17 +242,7 @@ namespace kurs
         public int Power = 100;
         
         public override void ImpactParticle(Particle particle)
-        {/*
-            float gX = X - particle.X;
-            float gY = Y - particle.Y;
-
-            double r = Math.Sqrt(gX * gX + gY * gY);
-            if (r + particle.Radius < Power / 2)
-            {
-                // float r2 = (float)Math.Max(100, gX * gX + gY * gY);
-                YForTP = Y;
-                XForTP = X;
-            }*/
+        {
         }
 
         public override void Render(Graphics g)

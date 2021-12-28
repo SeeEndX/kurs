@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace kurs //сделать 6
+namespace kurs 
 {
     public partial class Form1 : Form
     {
@@ -16,8 +16,8 @@ namespace kurs //сделать 6
         Emitter emitter;
 
         CounterPoint pointC;
-        //TeleportPoint pointTIn;
-        //TeleportPointOut pointTOut;
+        TeleportPoint TIn = new TeleportPoint();
+        TeleportPointOut TOut = new TeleportPointOut();
         int Mode = 0;
         public Form1()
         {
@@ -27,7 +27,7 @@ namespace kurs //сделать 6
             this.emitter = new Emitter
             {
                 Direction = 0,
-                Spreading = 10,
+                Spreading = 300,
                 SpeedMin = 10,
                 SpeedMax = 10,
                 ColorFrom = Color.Red,
@@ -83,23 +83,25 @@ namespace kurs //сделать 6
         //6 задание счетчик
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
+            lblInfoForTp.Visible = false;
             if (Mode == 0)
             {
-                pointC = new CounterPoint
-                {
-                    X = e.X,
-                    Y = e.Y,
-                };
+                    pointC = new CounterPoint
+                    {
+                        X = e.X,
+                        Y = e.Y,
+                    };
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            lblInfoForTp.Visible = false;
             Mode = 0;
             pointC = new CounterPoint
             {
                 X = picDisplay.Width / 2 + 100,
-                Y = picDisplay.Height / 2
+               Y = picDisplay.Height / 2
             };
 
             emitter.impactPoints.Add(pointC);    
@@ -132,10 +134,10 @@ namespace kurs //сделать 6
         private void btnTP_Click(object sender, EventArgs e)
         {
             Mode = 1;
+            lblInfoForTp.Text = "ЛКМ - добавление ТП на вход\nПКМ - добавление ТП на выход";
+            lblInfoForTp.Visible = true;
         }
 
-        TeleportPoint TIn = new TeleportPoint();
-        TeleportPointOut TOut = new TeleportPointOut();
         private void picDisplay_MouseUp(object sender, MouseEventArgs e)
         {
             if (Mode == 1)
