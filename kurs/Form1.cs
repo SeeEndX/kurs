@@ -18,7 +18,7 @@ namespace kurs //сделать 6
         CounterPoint pointC;
         //TeleportPoint pointTIn;
         //TeleportPointOut pointTOut;
-        int Mode;
+        int Mode = 0;
         public Form1()
         {
             InitializeComponent();
@@ -46,18 +46,6 @@ namespace kurs //сделать 6
             };
 
             emitter.impactPoints.Add(pointC);
-
-            /*pointTIn = new TeleportPoint
-            {
-                X = picDisplay.Width / 2 + 100,
-                Y = picDisplay.Height / 2+100,
-            };
-
-            pointTOut = new TeleportPointOut
-            {
-                X = picDisplay.Width / 2 - 100,
-                Y = picDisplay.Height / 2 - 100,
-            };*/
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -84,13 +72,6 @@ namespace kurs //сделать 6
             //emitter.Y = e.Y;
             pointC.X = e.X;    //следование счетчика
             pointC.Y = e.Y;
-
-            /*pointTIn.X = e.X;
-            pointTIn.Y = e.Y;
-
-            pointTOut.X = e.X;
-            pointTOut.Y = e.Y;*/
-
         }
 
         private void tbDirection_Scroll(object sender, EventArgs e)
@@ -102,27 +83,19 @@ namespace kurs //сделать 6
         //6 задание счетчик
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            pointC = new CounterPoint
+            if (Mode == 0)
             {
-                X = e.X,
-                Y = e.Y,
-            };
-
-            /*pointTIn = new TeleportPoint
-            {
-                X = e.X,
-                Y = e.Y,
-            };
-
-            pointTOut = new TeleportPointOut
-            {
-                X = e.X,
-                Y = e.Y,
-            };*/
+                pointC = new CounterPoint
+                {
+                    X = e.X,
+                    Y = e.Y,
+                };
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Mode = 0;
             pointC = new CounterPoint
             {
                 X = picDisplay.Width / 2 + 100,
@@ -159,24 +132,6 @@ namespace kurs //сделать 6
         private void btnTP_Click(object sender, EventArgs e)
         {
             Mode = 1;
-            /*pointTIn = new TeleportPoint
-            {
-                X = picDisplay.Width / 2 + 100,
-                Y = picDisplay.Height / 2,
-            };
-            emitter.impactPoints.Add(pointTIn);
-            emitter.impactPoints.Add(pointTOut);*/
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            /*pointTOut = new TeleportPointOut
-             {
-                 X = picDisplay.Width / 2 + 100,
-                 Y = picDisplay.Height / 2,
-             };
-            
-            emitter.impactPoints.Add(pointTOut);*/
         }
 
         TeleportPoint TIn = new TeleportPoint();
